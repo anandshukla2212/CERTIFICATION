@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate | RUDRAxTECH</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .certificate {
+      width: 1000px;
+      height: 650px;
+      background: white;
+      margin: auto;
+      display: flex;
+      border: 10px solid #000;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .side-banner {
+      background: #007BFF;
+      width: 80px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 50px 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* LOGO STYLE */
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #007BFF;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .top-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #007BFF;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .name {
+      font-size: 30px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 25px 0 10px;
+      text-transform: uppercase;
+    }
+
+    .description {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .course {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .issued {
+      font-size: 16px;
+      color: #555;
+      margin-top: 30px;
+    }
+
+    .signature-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 50px;
+    }
+
+    .signature-info {
+      text-align: left;
+    }
+
+    .signature {
+      height: 80px;
+      opacity: 0.95;
+    }
+
+    .date-block {
+      text-align: right;
+    }
+
+    .footer-link {
+      font-size: 12px;
+      margin-top: 25px;
+      color: #333;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="certificate" class="certificate">
+    <div class="side-banner">RUDRAxTECH GARG</div>
+
+    <div class="main-content">
+      <!-- LOGO CIRCLE -->
+      <div class="logo">
+        <img src="logo.jpg" alt="Company Logo">
+      </div>
+
+      <div class="top-title">RUDRAxTECH GARG</div>
+
+      <h1>Certificate of Completion</h1>
+      <p>This is to certify that</p>
+
+      <p class="name" id="studentName">[Student Name]</p>
+
+      <p class="description">
+        has successfully completed and received a passing grade in
+      </p>
+
+      <p class="course" id="courseName">[Course Name]</p>
+
+      <p class="issued">
+        A course conducted by RUDRAxTECH Academy<br>
+        Powered by RUDRAxTECH Developer Network
+      </p>
+
+      <div class="signature-block">
+        <div class="signature-info">
+          <img src="signature.png" alt="Signature" class="signature"><br>
+          <strong>Anand Shukla</strong><br>
+          Director – RUDRAxTECH
+        </div>
+        <div class="date-block">
+          Date: <span id="date"></span>
+        </div>
+      </div>
+
+      <p class="footer-link">
+        This certificate is digitally generated and verified by RUDRAxTECH.
+      </p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="downloadPDF()">⬇ Download PDF</button>
+
+  <script>
+    document.getElementById("studentName").innerText = localStorage.getItem("userName") || "Student";
+    document.getElementById("courseName").innerText = localStorage.getItem("selectedCourse") || "Course";
+
+    const today = new Date();
+    const dateStr = today.toLocaleDateString("en-IN", {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+    document.getElementById("date").innerText = dateStr;
+
+    function downloadPDF() {
+      const element = document.getElementById("certificate");
+      html2pdf().set({
+        margin: 0,
+        filename: 'rudraxtech-certificate.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+      }).from(element).save();
+    }
+  </script>
+
+</body>
+</html>

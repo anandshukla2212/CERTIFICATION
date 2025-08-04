@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Course | RUDRAxTECH</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .company-name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .rudra { color: #000; }
+    .x { color: red; }
+    .tech { color: #007BFF; }
+
+    .course {
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .course button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .course button:hover {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="logo.jpg" alt="Logo">
+    <div class="company-name">
+      <span class="rudra">RUDRA</span><span class="x">x</span><span class="tech">TECH</span>
+    </div>
+  </div>
+
+  <h2>📚 Select a Course to Start the Exam</h2>
+
+  <div class="course">
+    <h3>HTML Basics</h3>
+    <button onclick="selectCourse('HTML Basics')">Start Exam</button>
+  </div>
+
+  <div class="course">
+    <h3>JavaScript Fundamentals</h3>
+    <button onclick="selectCourse('JavaScript Fundamentals')">Start Exam</button>
+  </div>
+
+  <div class="course">
+    <h3>CSS Essentials</h3>
+    <button onclick="selectCourse('CSS Essentials')">Start Exam</button>
+  </div>
+
+  <script>
+    function selectCourse(course) {
+      localStorage.setItem("selectedCourse", course);
+      window.location.href = "exam.html"; // Next step: exam page
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎓 RUDRAxTECH Certificate Registration</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .company-name {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    .rudra {
+      color: #000;
+    }
+
+    .x {
+      color: red;
+    }
+
+    .tech {
+      color: #007BFF;
+    }
+
+    .form-box {
+      background: #fff;
+      padding: 30px;
+      margin: auto;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      border-radius: 10px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="logo.jpg" alt="Company Logo"> <!-- Replace with your logo URL -->
+    <div class="company-name">
+      <span class="rudra">RUDRA</span><span class="x">x</span><span class="tech">TECH</span>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h2>🎓 Register to Begin</h2>
+    <input type="text" id="name" placeholder="Enter your full name" required><br>
+    <input type="email" id="email" placeholder="Enter your email" required><br>
+    <button onclick="saveAndProceed()">Next ➡️</button>
+  </div>
+
+  <script>
+    function saveAndProceed() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (name === "" || email === "") {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+
+      window.location.href = "course.html"; // Go to course selection
+    }
+  </script>
+
+</body>
+</html>

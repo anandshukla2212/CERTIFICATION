@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exam | RUDRAxTECH</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .exam-container {
+      background: #fff;
+      width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .question {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 25px;
+      background: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      width: 60px;
+    }
+
+    .company-name {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .rudra { color: #000; }
+    .x { color: red; }
+    .tech { color: #007BFF; }
+
+    #resultBox {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #e9f7ef;
+      border: 2px dashed #28a745;
+      display: none;
+      border-radius: 10px;
+    }
+
+    #certificateBtn {
+      display: none;
+      background-color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="logo.jpg" alt="Logo">
+    <div class="company-name">
+      <span class="rudra">RUDRA</span><span class="x">x</span><span class="tech">TECH</span>
+    </div>
+  </div>
+
+  <div class="exam-container">
+    <h2>👤 Name: <span id="userName"></span></h2>
+    <h3>📘 Course: <span id="courseName"></span></h3>
+
+    <form id="examForm">
+
+      <div class="question">
+        <p>1. What does HTML stand for?</p>
+        <label><input type="radio" name="q1" value="A"> Hyper Text Markup Language</label><br>
+        <label><input type="radio" name="q1" value="B"> Hot Mail Transfer Language</label><br>
+        <label><input type="radio" name="q1" value="C"> High Text Machine Language</label>
+      </div>
+
+      <div class="question">
+        <p>2. Which tag is used for a line break in HTML?</p>
+        <label><input type="radio" name="q2" value="A"> &lt;br&gt;</label><br>
+        <label><input type="radio" name="q2" value="B"> &lt;lb&gt;</label><br>
+        <label><input type="radio" name="q2" value="C"> &lt;break&gt;</label>
+      </div>
+
+      <div class="question">
+        <p>3. HTML files are saved by default with which extension?</p>
+        <label><input type="radio" name="q3" value="A"> .htm</label><br>
+        <label><input type="radio" name="q3" value="B"> .html</label><br>
+        <label><input type="radio" name="q3" value="C"> Both A and B</label>
+      </div>
+
+      <button type="button" onclick="submitExam()">Submit Exam</button>
+    </form>
+
+    <!-- Result Box -->
+    <div id="resultBox">
+      <h3>🎉 Result:</h3>
+      <p>You scored <span id="scoreDisplay"></span> out of 3.</p>
+      <p>Your Grade: <strong><span id="gradeDisplay"></span></strong></p>
+    </div>
+
+    <!-- Get Certificate Button -->
+    <button id="certificateBtn" onclick="window.location.href='certificate.html'">🎓 Get Certificate</button>
+
+  </div>
+
+  <script>
+    document.getElementById("userName").innerText = localStorage.getItem("userName") || "Student";
+    document.getElementById("courseName").innerText = localStorage.getItem("selectedCourse") || "N/A";
+
+    function submitExam() {
+      const form = document.forms["examForm"];
+      if (!form.q1.value || !form.q2.value || !form.q3.value) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+
+      let score = 0;
+      if (form.q1.value === "A") score++;
+      if (form.q2.value === "A") score++;
+      if (form.q3.value === "C") score++;
+
+      let grade = "";
+      if (score === 3) grade = "A+";
+      else if (score === 2) grade = "B";
+      else if (score === 1) grade = "C";
+      else grade = "Fail";
+
+      localStorage.setItem("examScore", score);
+      localStorage.setItem("examGrade", grade);
+
+      // Show result box
+      document.getElementById("scoreDisplay").innerText = score;
+      document.getElementById("gradeDisplay").innerText = grade;
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("certificateBtn").style.display = "inline-block";
+    }
+  </script>
+
+</body>
+</html>
